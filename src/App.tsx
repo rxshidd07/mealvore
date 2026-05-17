@@ -497,15 +497,15 @@ const PlanMenuScreen = ({ planId, onBack }: { planId: string, onBack: () => void
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-black font-display text-on-surface leading-none">{(meal as any).protein}</div>
-                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">p</div>
+                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">protein</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-black font-display text-on-surface leading-none">{(meal as any).fat}</div>
-                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">f</div>
+                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">fat</div>
                         </div>
                         <div className="text-center">
                           <div className="text-lg font-black font-display text-on-surface leading-none">{(meal as any).carbs}</div>
-                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">c</div>
+                          <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">carbs</div>
                         </div>
                       </div>
                     </div>
