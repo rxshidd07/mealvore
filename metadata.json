@@ -1,0 +1,8 @@
+{
+  "name": "Mealyvore",
+  "description": "Hyperlocal, handcrafted, home-cooked meals from your neighbors.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
