@@ -617,12 +617,12 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&q=80&w=2000" 
+          src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=2000" 
           className="w-full h-full object-cover" 
           alt="Traditional Indian Meal" 
           referrerPolicy="no-referrer"
         />
-        <div className="absolute inset-0 bg-black/30 backdrop-blur-[2px]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/40 to-black/20 backdrop-blur-[1px]" />
         
         <div className="absolute inset-0 flex flex-col justify-center px-6 md:px-12 lg:px-24">
           <div className="max-w-3xl animate-in fade-in slide-in-from-bottom-8 duration-1000">
