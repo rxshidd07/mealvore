@@ -8,6 +8,14 @@ This contains everything you need to run your app locally.
 
 View your app in AI Studio: https://ai.studio/apps/8444487c-c0bc-4a84-9dd9-97d8aae40a92
 
+## Deploy via GitHub Pages
+
+1. Go to **Settings → Pages** in your GitHub repository.
+2. Under **Source**, select **GitHub Actions**.
+3. Go to **Settings → Secrets and variables → Actions** and add a secret named `GEMINI_API_KEY` with your Gemini API key.
+4. Push to the `main` branch (or manually trigger the workflow under **Actions**).
+5. Your app will be live at `https://<your-username>.github.io/mealvore/`.
+
 ## Run Locally
 
 **Prerequisites:**  Node.js
