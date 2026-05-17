@@ -73,15 +73,15 @@ interface CartItem {
 }
 
 // --- Shared Components ---
-const ChefAvatar = ({ gender, size = 'w-40 h-40', emojiScale = 'text-5xl', className = '', img = '' }: { gender: 'male' | 'female', size?: string, emojiScale?: string, className?: string, img?: string }) => {
+const ChefAvatar = ({ gender, size = 'w-40 h-40', emojiScale = 'text-5xl', className = '' }: { gender: 'male' | 'female', size?: string, emojiScale?: string, className?: string }) => {
   const emoji = gender === 'female' ? '👩‍🍳' : '👨‍🍳';
   return (
-    <div className={`${size} rounded-full flex items-center justify-center bg-[#EEEAE1] border border-on-surface/5 shadow-inner ${className} overflow-hidden`}>
-      {img ? (
-        <img src={img} className="w-full h-full object-cover" alt="Chef Profile" referrerPolicy="no-referrer" />
-      ) : (
-        <span className={`${emojiScale} drop-shadow-sm`}>{emoji}</span>
-      )}
+    <div className={`${size} rounded-full flex items-center justify-center bg-[#F7F3ED] border border-[#E5E0D8] shadow-sm ${className} overflow-hidden relative group`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-transparent pointer-events-none" />
+      <span className={`${emojiScale} drop-shadow-sm select-none transform transition-transform group-hover:scale-110 duration-500 opacity-90`}>
+        {emoji}
+      </span>
+      <div className="absolute inset-0 border border-black/[0.03] rounded-full pointer-events-none" />
     </div>
   );
 };
@@ -95,7 +95,7 @@ const CHEFS_DATA = {
     bio: 'Chef Anita S. is a passionate Bengali home chef known for rich, comforting flavors and slow-cooked traditional meals inspired by Kolkata-style cooking. Having learned recipes from generations of family cooking, she specializes in aromatic Dum Biryani and authentic homemade dishes that bring the warmth of Bengali hospitality to every plate.',
     rating: 4.9,
     reviews: '120+',
-    img: 'https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=400',
+    img: '',
     headerImg: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=1200',
     specialties: ['Bengali Cuisine', 'Kolkata Dum Biryani', 'Traditional Sweets'],
     kitchenPhotos: [
@@ -103,11 +103,11 @@ const CHEFS_DATA = {
       'https://images.unsplash.com/photo-1516715065035-4306b895445d?auto=format&fit=crop&q=80&w=200'
     ],
     menu: [
-      { name: 'Kolkata Chicken Dum Biryani', price: '₹320', meta: 'Aromatic basmati rice with succulent chicken and boiled potato', tag: 'SIGNATURE', kcal: 650, p: '32g', f: '24g', c: '75g', img: 'https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=400' },
-      { name: 'Mutton Kosha with Luchi', price: '₹380', meta: 'Slow-cooked mutton in rich spicy gravy with fluffy luchis', tag: 'CHEF\'S SPECIAL', kcal: 780, p: '38g', f: '42g', c: '65g', img: 'https://images.unsplash.com/photo-1626777553732-48f863264c1c?auto=format&fit=crop&q=80&w=400' },
-      { name: 'Bengali Fish Curry with Steamed Rice', price: '₹280', meta: 'Traditional Rohu fish curry with mustard oil and steam rice', tag: 'DAILY FRESH', kcal: 520, p: '28g', f: '18g', c: '62g', img: 'https://images.unsplash.com/photo-1601050633647-8197779dc672?auto=format&fit=crop&q=80&w=400' },
-      { name: 'Chingri Malai Curry', price: '₹350', meta: 'Prawns cooked in creamy coconut milk and traditional spices', tag: 'LUXURY', kcal: 580, p: '30g', f: '35g', c: '45g', img: 'https://images.unsplash.com/photo-1567117632960-56e34a4c2456?auto=format&fit=crop&q=80&w=400' },
-      { name: 'Mishti Pulao with Paneer Curry', price: '₹260', meta: 'Sweetened fragrant rice served with soft paneer cubes', tag: 'BEST SELLER', kcal: 620, p: '18g', f: '22g', c: '88g', img: 'https://images.unsplash.com/photo-1596797038530-2c39bb9ed97c?auto=format&fit=crop&q=80&w=400' }
+      { name: 'Kolkata Chicken Dum Biryani', price: '₹320', meta: 'Aromatic basmati rice with succulent chicken and slow-cooked potato', tag: 'SIGNATURE', kcal: 650, p: '32g', f: '24g', c: '75g' },
+      { name: 'Mutton Kosha with Luchi', price: '₹380', meta: 'Rich, spicy slow-cooked mutton served with fluffy golden luchis', tag: 'CLASSIC', kcal: 780, p: '38g', f: '42g', c: '65g' },
+      { name: 'Bengali Fish Curry with Steamed Rice', price: '₹280', meta: 'Traditional Rohu fish in mustard gravy with fragrant steamed rice', tag: 'LOCAL FAVORITE', kcal: 520, p: '28g', f: '18g', c: '62g' },
+      { name: 'Chingri Malai Curry', price: '₹350', meta: 'Golda Chingri cooked in a silky coconut milk gravy with mild spices', tag: 'LUXURY', kcal: 580, p: '30g', f: '35g', c: '45g' },
+      { name: 'Mishti Pulao with Paneer Curry', price: '₹260', meta: 'Fragrant saffron rice served with melt-in-the-mouth paneer cubes', tag: 'AUTHENTIC', kcal: 620, p: '18g', f: '22g', c: '88g' }
     ]
   },
   'chef-rahul-m': {
@@ -117,7 +117,7 @@ const CHEFS_DATA = {
     bio: 'Chef Rahul M. is a health-focused home chef who believes everyday food should be nourishing, balanced, and comforting without losing traditional flavors. Inspired by wholesome Indian home cooking, he creates low-oil thalis packed with seasonal vegetables, fresh ingredients, and simple spices that feel light yet satisfying. His meals are designed for people who want clean, homestyle food every day.',
     rating: 4.8,
     reviews: '85+',
-    img: 'https://images.unsplash.com/photo-1583394821910-2811af85122e?auto=format&fit=crop&q=80&w=400',
+    img: '',
     headerImg: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1000',
     specialties: ['Health-focused', 'Healthy Thalis', 'Low-oil Indian'],
     kitchenPhotos: [
@@ -139,7 +139,7 @@ const CHEFS_DATA = {
     bio: 'Chef Priya K. is an artisanal baker passionate about handcrafted breads and slow baking techniques. Using organic grains, natural fermentation, and small-batch preparation, she creates fresh baked goods that feel warm, rustic, and homemade. Her kitchen blends traditional baking methods with modern flavors to create comforting everyday treats.',
     rating: 5.0,
     reviews: '60+',
-    img: 'https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?auto=format&fit=crop&q=80&w=400',
+    img: '',
     headerImg: 'https://images.unsplash.com/photo-1516715065035-4306b895445d?auto=format&fit=crop&q=80&w=1000',
     specialties: ['Artisanal Breads', 'Handcrafted', 'Slow Baking'],
     kitchenPhotos: [
@@ -167,16 +167,16 @@ const PLANS_DATA = {
     accent: 'bg-primary/5',
     tagColor: 'bg-primary',
     meals: [
-      { day: 'Day 1', main: 'Roti + Aloo Matar Sabzi + Salad', items: ['2 Rotis', 'Aloo Matar', 'Fresh Salad'], kcal: 350, protein: '10g', fat: '8g', carbs: '60g', img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97eb1?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 2', main: 'Jeera Rice + Dal Tadka', items: ['Jeera Rice', 'Yellow Dal Tadka'], kcal: 400, protein: '12g', fat: '10g', carbs: '65g', img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 3', main: 'Vegetable Khichdi + Curd', items: ['Veg Khichdi', 'Fresh Curd'], kcal: 320, protein: '9g', fat: '7g', carbs: '55g', img: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 4', main: 'Poha with Peanuts', items: ['Poha', 'Roasted Peanuts', 'Onion & Sev'], kcal: 280, protein: '6g', fat: '10g', carbs: '40g', img: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 5', main: 'Chapati Roll with Paneer Bhurji', items: ['2 Wheat Rolls', 'Paneer Bhurji'], kcal: 380, protein: '15g', fat: '12g', carbs: '50g' },
-      { day: 'Day 6', main: 'Lemon Rice + Chicken Curry', items: ['Lemon Rice', 'Home-style Chicken Curry'], kcal: 520, protein: '28g', fat: '15g', carbs: '70g' },
-      { day: 'Day 7', main: 'Veg Pulao + Raita', items: ['Veg Pulao', 'Mixed Veg Raita'], kcal: 350, protein: '8g', fat: '7g', carbs: '65g' },
-      { day: 'Day 8', main: 'Upma with Vegetables', items: ['Suji Upma', 'Seasonal Veggies', 'Peanuts'], kcal: 250, protein: '5g', fat: '6g', carbs: '45g' },
-      { day: 'Day 9', main: 'Egg Curry + Rice', items: ['2 Eggs Curry', 'Steamed Rice'], kcal: 480, protein: '22g', fat: '14g', carbs: '65g' },
-      { day: 'Day 10', main: 'Chole Sabji + 2 Rotis', items: ['Masala Chole', '2 Soft Rotis', 'Pickle'], kcal: 420, protein: '14g', fat: '10g', carbs: '68g' },
+      { day: 'Day 1', main: 'Roti + aloo matar sabzi + salad', items: ['2 Rotis', 'Aloo Matar', 'Fresh Salad'], kcal: 350, protein: '10g', fat: '8g', carbs: '60g' },
+      { day: 'Day 2', main: 'Jeera rice + dal tadka', items: ['Jeera Rice', 'Yellow Dal Tadka'], kcal: 400, protein: '12g', fat: '10g', carbs: '65g' },
+      { day: 'Day 3', main: 'Vegetable khichdi + curd', items: ['Veg Khichdi', 'Fresh Curd'], kcal: 320, protein: '9g', fat: '7g', carbs: '55g' },
+      { day: 'Day 4', main: 'Poha with peanuts', items: ['Poha', 'Roasted Peanuts', 'Onion & Sev'], kcal: 280, protein: '6g', fat: '10g', carbs: '40g' },
+      { day: 'Day 5', main: 'Chapati roll with paneer bhurji', items: ['2 Wheat Rolls', 'Paneer Bhurji'], kcal: 380, protein: '15g', fat: '12g', carbs: '50g' },
+      { day: 'Day 6', main: 'Lemon rice + chicken curry', items: ['Lemon Rice', 'Home-style Chicken Curry'], kcal: 520, protein: '28g', fat: '15g', carbs: '70g' },
+      { day: 'Day 7', main: 'Veg pulao + raita', items: ['Veg Pulao', 'Mixed Veg Raita'], kcal: 350, protein: '8g', fat: '7g', carbs: '65g' },
+      { day: 'Day 8', main: 'Upma with vegetables', items: ['Suji Upma', 'Seasonal Veggies', 'Peanuts'], kcal: 250, protein: '5g', fat: '6g', carbs: '45g' },
+      { day: 'Day 9', main: 'Egg curry + rice', items: ['2 Eggs Curry', 'Steamed Rice'], kcal: 480, protein: '22g', fat: '14g', carbs: '65g' },
+      { day: 'Day 10', main: 'Chole sabji + 2 rotis', items: ['Masala Chole', '2 Soft Rotis', 'Pickle'], kcal: 420, protein: '14g', fat: '10g', carbs: '68g' },
     ]
   },
   'healthy': {
@@ -190,16 +190,16 @@ const PLANS_DATA = {
     accent: 'bg-secondary/5',
     tagColor: 'bg-secondary',
     meals: [
-      { day: 'Day 1', main: 'Grilled Chicken + Sautéed Veggies', items: ['Grilled Breast', 'Broccoli', 'Bell Peppers'], kcal: 350, protein: '35g', fat: '8g', carbs: '15g', img: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 2', main: 'Oats Vegetable Khichdi', items: ['Steel Cut Oats', 'Mixed Vegetables', 'Moong Dal'], kcal: 280, protein: '10g', fat: '5g', carbs: '48g', img: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 3', main: 'Millet Upma', items: ['Foxtail Millet', 'Veggies', 'Curry Leaves'], kcal: 220, protein: '6g', fat: '4g', carbs: '42g', img: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 4', main: 'Brown Rice + Rajma', items: ['Brown Basmati', 'Protein Rajma'], kcal: 380, protein: '16g', fat: '4g', carbs: '70g', img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 5', main: 'Sprouts Salad Bowl', items: ['Moong Sprouts', 'Cucumber', 'Tomato', 'Lemon'], kcal: 180, protein: '12g', fat: '2g', carbs: '28g' },
-      { day: 'Day 6', main: 'Moong Dal Chilla + Mint Chutney', items: ['2 Chillas', 'Pudina Chutney'], kcal: 210, protein: '12g', fat: '6g', carbs: '28g' },
-      { day: 'Day 7', main: 'Quinoa Pulao', items: ['Organic Quinoa', 'Steamed Veggies'], kcal: 290, protein: '10g', fat: '6g', carbs: '50g' },
-      { day: 'Day 8', main: 'Paneer Salad Wrap', items: ['Whole Wheat Wrap', 'Fresh Paneer', 'Greens'], kcal: 320, protein: '18g', fat: '10g', carbs: '35g' },
-      { day: 'Day 9', main: 'Boiled Egg Sandwich on Multigrain', items: ['2 Eggs', 'Multigrain Bread', 'Spinach'], kcal: 310, protein: '18g', fat: '9g', carbs: '38g' },
-      { day: 'Day 10', main: 'Greek Yogurt Fruit Bowl', items: ['Greek Yogurt', 'Seasonal Fruits', 'Seeds'], kcal: 220, protein: '15g', fat: '4g', carbs: '32g' },
+      { day: 'Day 1', main: 'Grilled chicken + sautéed veggies', items: ['Grilled Breast', 'Broccoli', 'Bell Peppers'], kcal: 350, protein: '35g', fat: '8g', carbs: '15g' },
+      { day: 'Day 2', main: 'Oats vegetable khichdi', items: ['Steel Cut Oats', 'Mixed Vegetables', 'Moong Dal'], kcal: 280, protein: '10g', fat: '5g', carbs: '48g' },
+      { day: 'Day 3', main: 'Millet upma', items: ['Foxtail Millet', 'Veggies', 'Curry Leaves'], kcal: 220, protein: '6g', fat: '4g', carbs: '42g' },
+      { day: 'Day 4', main: 'Brown rice + rajma', items: ['Brown Basmati', 'Protein Rajma'], kcal: 380, protein: '16g', fat: '4g', carbs: '70g' },
+      { day: 'Day 5', main: 'Sprouts salad bowl', items: ['Moong Sprouts', 'Cucumber', 'Tomato', 'Lemon'], kcal: 180, protein: '12g', fat: '2g', carbs: '28g' },
+      { day: 'Day 6', main: 'Moong dal chilla + mint chutney', items: ['2 Chillas', 'Pudina Chutney'], kcal: 210, protein: '12g', fat: '6g', carbs: '28g' },
+      { day: 'Day 7', main: 'Quinoa pulao', items: ['Organic Quinoa', 'Steamed Veggies'], kcal: 290, protein: '10g', fat: '6g', carbs: '50g' },
+      { day: 'Day 8', main: 'Paneer salad wrap', items: ['Whole Wheat Wrap', 'Fresh Paneer', 'Greens'], kcal: 320, protein: '18g', fat: '10g', carbs: '35g' },
+      { day: 'Day 9', main: 'Boiled egg sandwich on multigrain bread', items: ['2 Eggs', 'Multigrain Bread', 'Spinach'], kcal: 310, protein: '18g', fat: '9g', carbs: '38g' },
+      { day: 'Day 10', main: 'Greek yogurt fruit bowl', items: ['Greek Yogurt', 'Seasonal Fruits', 'Seeds'], kcal: 220, protein: '15g', fat: '4g', carbs: '32g' },
     ]
   },
   'elderly': {
@@ -213,16 +213,16 @@ const PLANS_DATA = {
     accent: 'bg-accent/5',
     tagColor: 'bg-accent',
     meals: [
-      { day: 'Day 1', main: 'Soft Moong Dal Khichdi', items: ['Overcooked Khichdi', 'Pure Ghee'], kcal: 280, protein: '9g', fat: '5g', carbs: '48g', img: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 2', main: 'Daliya Porridge', items: ['Wheat Daliya', 'Milk/Veggie base'], kcal: 240, protein: '8g', fat: '4g', carbs: '45g', img: 'https://images.unsplash.com/photo-1517673132405-a56a62b18caf?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 3', main: 'Lauki Chana Dal + Soft Roti', items: ['Lauki Chana Dal', '1 Soft Roti'], kcal: 310, protein: '11g', fat: '6g', carbs: '52g', img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 4', main: 'Idli + Sambar', items: ['2 Steam Idlis', 'Veggie Sambar'], kcal: 220, protein: '6g', fat: '2g', carbs: '45g', img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 5', main: 'Curd Rice', items: ['Soft Rice', 'Temper Curd', 'Pomegranate'], kcal: 260, protein: '7g', fat: '6g', carbs: '45g' },
-      { day: 'Day 6', main: 'Suji Upma', items: ['Soft Roasted Rava', 'Finely Cut Veggies'], kcal: 210, protein: '5g', fat: '4g', carbs: '40g' },
-      { day: 'Day 7', main: 'Vegetable Stew + Rice', items: ['Creamy Veg Stew', 'Steamed Rice'], kcal: 320, protein: '7g', fat: '8g', carbs: '55g' },
-      { day: 'Day 8', main: 'Mashed Potato with Dal Rice', items: ['Yellow Dal', 'Rice', 'Aloo Chokha'], kcal: 350, protein: '10g', fat: '8g', carbs: '60g' },
-      { day: 'Day 9', main: 'Oats Porridge with Banana', items: ['Milk Oats', '1 Mashed Banana'], kcal: 280, protein: '8g', fat: '5g', carbs: '50g' },
-      { day: 'Day 10', main: 'Soft Paneer Curry + Phulka', items: ['Narm Paneer', '1 Soft Phulka'], kcal: 340, protein: '16g', fat: '12g', carbs: '45g' },
+      { day: 'Day 1', main: 'Soft moong dal khichdi', items: ['Overcooked Khichdi', 'Pure Ghee'], kcal: 280, protein: '9g', fat: '5g', carbs: '48g' },
+      { day: 'Day 2', main: 'Daliya porridge', items: ['Wheat Daliya', 'Milk/Veggie base'], kcal: 240, protein: '8g', fat: '4g', carbs: '45g' },
+      { day: 'Day 3', main: 'Lauki chana dal + soft roti', items: ['Lauki Chana Dal', '1 Soft Roti'], kcal: 310, protein: '11g', fat: '6g', carbs: '52g' },
+      { day: 'Day 4', main: 'Idli + sambar', items: ['2 Steam Idlis', 'Veggie Sambar'], kcal: 220, protein: '6g', fat: '2g', carbs: '45g' },
+      { day: 'Day 5', main: 'Curd rice', items: ['Soft Rice', 'Temper Curd', 'Pomegranate'], kcal: 260, protein: '7g', fat: '6g', carbs: '45g' },
+      { day: 'Day 6', main: 'Suji upma', items: ['Soft Roasted Rava', 'Finely Cut Veggies'], kcal: 210, protein: '5g', fat: '4g', carbs: '40g' },
+      { day: 'Day 7', main: 'Vegetable stew + rice', items: ['Creamy Veg Stew', 'Steamed Rice'], kcal: 320, protein: '7g', fat: '8g', carbs: '55g' },
+      { day: 'Day 8', main: 'Mashed potato with dal rice', items: ['Yellow Dal', 'Rice', 'Aloo Chokha'], kcal: 350, protein: '10g', fat: '8g', carbs: '60g' },
+      { day: 'Day 9', main: 'Oats porridge with banana', items: ['Milk Oats', '1 Mashed Banana'], kcal: 280, protein: '8g', fat: '5g', carbs: '50g' },
+      { day: 'Day 10', main: 'Soft paneer curry + phulka', items: ['Narm Paneer', '1 Soft Phulka'], kcal: 340, protein: '16g', fat: '12g', carbs: '45g' },
     ]
   },
   'artisanal': {
@@ -236,70 +236,68 @@ const PLANS_DATA = {
     accent: 'bg-primary/5',
     tagColor: 'bg-primary',
     meals: [
-      { day: 'Day 1', main: 'Sourdough Sandwich with Grilled Veggies', items: ['Sourdough Bread', 'Grilled Zucchini', 'Bell Peppers', 'Pesto'], kcal: 420, protein: '14g', fat: '12g', carbs: '55g', img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 2', main: 'Truffle Mushroom Pasta', items: ['Handmade Pasta', 'Wild Mushrooms', 'Truffle Oil', 'Parmesan'], kcal: 580, protein: '18g', fat: '24g', carbs: '65g', img: 'https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 3', main: 'Herb Butter Grilled Chicken', items: ['Chicken Breast', 'Herb Butter', 'Roasted Carrots', 'Green Beans'], kcal: 450, protein: '38g', fat: '28g', carbs: '12g', img: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 4', main: 'Pesto Paneer Toast', items: ['Artisanal Toast', 'Marinated Paneer', 'Basil Pesto'], kcal: 380, protein: '20g', fat: '22g', carbs: '25g', img: 'https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=400' },
-      { day: 'Day 5', main: 'Roasted Tomato Soup + Garlic Bread', items: ['Slow-roasted Tomato Soup', 'Sourdough Garlic Bread'], kcal: 320, protein: '9g', fat: '14g', carbs: '42g' },
-      { day: 'Day 6', main: 'Handmade Ravioli', items: ['Spinach & Ricotta Ravioli', 'Sage Butter Sauce'], kcal: 520, protein: '16g', fat: '18g', carbs: '68g' },
-      { day: 'Day 7', main: 'Smoked Cheese and Chicken Sandwich', items: ['Multi-grain Bread', 'Smoked Chicken', 'Provolone'], kcal: 490, protein: '28g', fat: '24g', carbs: '38g' },
-      { day: 'Day 8', main: 'Classic Mac and Cheese', items: ['Elbow Pasta', '4-Cheese Blend', 'Breadcrumbs'], kcal: 620, protein: '22g', fat: '32g', carbs: '70g' },
-      { day: 'Day 9', main: 'Quinoa and Roasted Beet Salad', items: ['Organic Quinoa', 'Roasted Beets', 'Feta', 'Walnuts'], kcal: 310, protein: '11g', fat: '14g', carbs: '38g' },
-      { day: 'Day 10', main: 'Spinach and Ricotta Cannelloni', items: ['Fresh Pasta Sheets', 'Ricotta Filling', 'Pomodoro Sauce'], kcal: 480, protein: '20g', fat: '22g', carbs: '52g' },
+      { day: 'Day 1', main: 'Sourdough sandwich with grilled veggies', items: ['Sourdough Bread', 'Grilled Zucchini', 'Bell Peppers', 'Pesto'], kcal: 420, protein: '14g', fat: '12g', carbs: '55g' },
+      { day: 'Day 2', main: 'Truffle mushroom pasta', items: ['Handmade Pasta', 'Wild Mushrooms', 'Truffle Oil', 'Parmesan'], kcal: 580, protein: '18g', fat: '24g', carbs: '65g' },
+      { day: 'Day 3', main: 'Herb butter grilled chicken', items: ['Chicken Breast', 'Herb Butter', 'Roasted Carrots', 'Green Beans'], kcal: 450, protein: '38g', fat: '28g', carbs: '12g' },
+      { day: 'Day 4', main: 'Pesto paneer toast', items: ['Artisanal Toast', 'Marinated Paneer', 'Basil Pesto'], kcal: 380, protein: '20g', fat: '22g', carbs: '25g' },
+      { day: 'Day 5', main: 'Roasted tomato soup + garlic bread', items: ['Slow-roasted Tomato Soup', 'Sourdough Garlic Bread'], kcal: 320, protein: '9g', fat: '14g', carbs: '42g' },
+      { day: 'Day 6', main: 'Handmade ravioli', items: ['Spinach & Ricotta Ravioli', 'Sage Butter Sauce'], kcal: 520, protein: '16g', fat: '18g', carbs: '68g' },
+      { day: 'Day 7', main: 'Smoked cheese and chicken sandwich', items: ['Multi-grain Bread', 'Smoked Chicken', 'Provolone'], kcal: 490, protein: '28g', fat: '24g', carbs: '38g' },
+      { day: 'Day 8', main: 'Classic mac and cheese', items: ['Elbow Pasta', '4-Cheese Blend', 'Breadcrumbs'], kcal: 620, protein: '22g', fat: '32g', carbs: '70g' },
     ]
   }
 };
 
-const REGIONAL_DISHES_DATA: Record<string, { name: string, price: number, kcal: number, p: string, f: string, c: string, img?: string }[]> = {
+const REGIONAL_DISHES_DATA: Record<string, { name: string, price: number, kcal: number, p: string, f: string, c: string }[]> = {
   'East Indian': [
-    { name: 'Luchi + Aloor Dom', price: 120, kcal: 450, p: '8g', f: '22g', c: '55g', img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Shorshe Ilish + Rice', price: 350, kcal: 620, p: '32g', f: '35g', c: '45g', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Cholar Dal + Pulao', price: 160, kcal: 520, p: '15g', f: '14g', c: '85g', img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97eb1?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Begun Bhaja + Dal + Rice', price: 140, kcal: 480, p: '12g', f: '18g', c: '68g' },
-    { name: 'Mutton Kosha + Paratha', price: 320, kcal: 750, p: '38g', f: '42g', c: '55g' },
-    { name: 'Macher Jhol + Rice', price: 220, kcal: 510, p: '28g', f: '14g', c: '65g' },
-    { name: 'Chicken Rezala + Pulao', price: 280, kcal: 680, p: '34g', f: '28g', c: '72g' },
-    { name: 'Macher Ghanto + Rice', price: 180, kcal: 490, p: '24g', f: '16g', c: '60g' },
-    { name: 'Basanti Pulao + Paneer Curry', price: 240, kcal: 610, p: '18g', f: '22g', c: '88g' },
-    { name: 'Tomato Chutney + Bhaja + Rice + Dal', price: 150, kcal: 460, p: '10g', f: '12g', c: '78g' },
+    { name: 'Luchi + aloor dom', price: 120, kcal: 450, p: '8g', f: '22g', c: '55g' },
+    { name: 'Shorshe ilish + rice', price: 350, kcal: 620, p: '32g', f: '35g', c: '45g' },
+    { name: 'Cholar dal + pulao', price: 160, kcal: 520, p: '15g', f: '14g', c: '85g' },
+    { name: 'Begun bhaja + dal + rice', price: 140, kcal: 480, p: '12g', f: '18g', c: '68g' },
+    { name: 'Mutton kosha + paratha', price: 320, kcal: 750, p: '38g', f: '42g', c: '55g' },
+    { name: 'Macher jhol + rice', price: 220, kcal: 510, p: '28g', f: '14g', c: '65g' },
+    { name: 'Chicken rezala + pulao', price: 280, kcal: 680, p: '34g', f: '28g', c: '72g' },
+    { name: 'Macher ghanto + rice', price: 180, kcal: 490, p: '24g', f: '16g', c: '60g' },
+    { name: 'Basanti pulao + paneer curry', price: 240, kcal: 610, p: '18g', f: '22g', c: '88g' },
+    { name: 'Tomato chutney + bhaja + rice + dal', price: 150, kcal: 460, p: '10g', f: '12g', c: '78g' },
   ],
   'North Indian': [
-    { name: 'Rajma Chawal', price: 140, kcal: 520, p: '18g', f: '12g', c: '85g', img: 'https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Chole Bhature', price: 160, kcal: 680, p: '14g', f: '32g', c: '88g', img: 'https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Aloo Paratha + Curd', price: 110, kcal: 480, p: '10g', f: '18g', c: '72g', img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97eb1?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Paneer Butter Masala + Naan', price: 260, kcal: 720, p: '24g', f: '38g', c: '75g' },
-    { name: 'Dal Makhani + Jeera Rice', price: 180, kcal: 580, p: '16g', f: '24g', c: '78g' },
-    { name: 'Kadhi Chawal', price: 130, kcal: 450, p: '12g', f: '14g', c: '70g' },
-    { name: 'Bhindi Masala + Roti', price: 120, kcal: 380, p: '9g', f: '16g', c: '55g' },
-    { name: 'Butter Chicken + Rice', price: 280, kcal: 780, p: '36g', f: '42g', c: '65g' },
-    { name: 'Palak Paneer + Chapati', price: 220, kcal: 540, p: '22g', f: '28g', c: '52g' },
-    { name: 'Veg Biryani + Raita', price: 190, kcal: 620, p: '14g', f: '22g', c: '92g' },
+    { name: 'Rajma chawal', price: 140, kcal: 520, p: '18g', f: '12g', c: '85g' },
+    { name: 'Chole bhature', price: 160, kcal: 680, p: '14g', f: '32g', c: '88g' },
+    { name: 'Aloo paratha + curd', price: 120, kcal: 480, p: '10g', f: '18g', c: '72g' },
+    { name: 'Paneer butter masala + naan', price: 260, kcal: 720, p: '24g', f: '38g', c: '75g' },
+    { name: 'Dal makhani + jeera rice', price: 180, kcal: 580, p: '16g', f: '24g', c: '78g' },
+    { name: 'Kadhi chawal', price: 130, kcal: 450, p: '12g', f: '14g', c: '70g' },
+    { name: 'Bhindi masala + roti', price: 120, kcal: 380, p: '9g', f: '16g', c: '55g' },
+    { name: 'Butter chicken + rice', price: 280, kcal: 780, p: '36g', f: '42g', c: '65g' },
+    { name: 'Palak paneer + chapati', price: 220, kcal: 540, p: '22g', f: '28g', c: '52g' },
+    { name: 'Veg biryani + raita', price: 190, kcal: 620, p: '14g', f: '22g', c: '92g' },
   ],
   'South Indian': [
-    { name: 'Idli + Sambar', price: 90, kcal: 320, p: '12g', f: '4g', c: '60g', img: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Dosa + Coconut Chutney', price: 110, kcal: 410, p: '8g', f: '18g', c: '58g', img: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Tamarind Rice', price: 100, kcal: 450, p: '6g', f: '15g', c: '75g', img: 'https://images.unsplash.com/photo-1626777552726-4a6b54c97eb1?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Curd Rice', price: 90, kcal: 380, p: '9g', f: '12g', c: '65g' },
-    { name: 'Lemon Rice + Spicy Tomato Chutney', price: 110, kcal: 440, p: '7g', f: '15g', c: '72g' },
-    { name: 'Vegetable Uttapam', price: 120, kcal: 360, p: '9g', f: '12g', c: '58g' },
-    { name: 'Rasam Rice', price: 80, kcal: 340, p: '6g', f: '8g', c: '62g' },
-    { name: 'Appam + Vegetable Stew', price: 160, kcal: 380, p: '10g', f: '18g', c: '50g' },
-    { name: 'Pongal + Chutney', price: 100, kcal: 490, p: '12g', f: '16g', c: '75g' },
-    { name: 'Chicken Chettinad + Rice', price: 260, kcal: 650, p: '34g', f: '28g', c: '65g' },
+    { name: 'Idli + sambar', price: 90, kcal: 320, p: '12g', f: '4g', c: '60g' },
+    { name: 'Dosa + coconut chutney', price: 110, kcal: 410, p: '8g', f: '18g', c: '58g' },
+    { name: 'Tamarind rice', price: 100, kcal: 450, p: '6g', f: '15g', c: '75g' },
+    { name: 'Curd rice', price: 90, kcal: 380, p: '9g', f: '12g', c: '65g' },
+    { name: 'Lemon rice + spicy tomato chutney', price: 110, kcal: 440, p: '7g', f: '15g', c: '72g' },
+    { name: 'Vegetable uttapam', price: 120, kcal: 360, p: '9g', f: '12g', c: '58g' },
+    { name: 'Rasam rice', price: 80, kcal: 340, p: '6g', f: '8g', c: '62g' },
+    { name: 'Appam + vegetable stew', price: 160, kcal: 380, p: '10g', f: '18g', c: '50g' },
+    { name: 'Pongal + chutney', price: 100, kcal: 490, p: '12g', f: '16g', c: '75g' },
+    { name: 'Chicken chettinad + rice', price: 260, kcal: 650, p: '34g', f: '28g', c: '65g' },
   ],
   'Artisanal': [
-    { name: 'Sourdough Sandwich with Grilled Veggies', price: 220, kcal: 380, p: '12g', f: '14g', c: '55g', img: 'https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Truffle Mushroom Pasta', price: 350, kcal: 580, p: '18g', f: '28g', c: '68g', img: 'https://images.unsplash.com/photo-1473093226795-af9932fe5856?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Herb Butter Grilled Chicken', price: 320, kcal: 490, p: '42g', f: '32g', c: '12g', img: 'https://images.unsplash.com/photo-1598515214211-89d3c73ae83b?auto=format&fit=crop&q=80&w=400' },
-    { name: 'Pesto Paneer Toast', price: 240, kcal: 420, p: '22g', f: '28g', c: '25g' },
-    { name: 'Roasted Tomato Soup + Garlic Bread', price: 180, kcal: 310, p: '9g', f: '12g', c: '48g' },
-    { name: 'Handmade Ravioli', price: 380, kcal: 540, p: '16g', f: '22g', c: '72g' },
-    { name: 'Smoked Cheese and Chicken Sandwich', price: 280, kcal: 520, p: '26g', f: '28g', c: '42g' },
-    { name: 'Classic Mac and Cheese', price: 240, kcal: 610, p: '18g', f: '32g', c: '65g' },
+    { name: 'Sourdough sandwich with grilled veggies', price: 220, kcal: 380, p: '12g', f: '14g', c: '55g' },
+    { name: 'Truffle mushroom pasta', price: 350, kcal: 580, p: '18g', f: '28g', c: '68g' },
+    { name: 'Herb butter grilled chicken', price: 320, kcal: 490, p: '42g', f: '32g', c: '12g' },
+    { name: 'Pesto paneer toast', price: 240, kcal: 420, p: '22g', f: '28g', c: '25g' },
+    { name: 'Roasted tomato soup + garlic bread', price: 180, kcal: 310, p: '9g', f: '12g', c: '48g' },
+    { name: 'Handmade ravioli', price: 380, kcal: 540, p: '16g', f: '22g', c: '72g' },
+    { name: 'Smoked cheese and chicken sandwich', price: 280, kcal: 520, p: '26g', f: '28g', c: '42g' },
+    { name: 'Classic mac and cheese', price: 240, kcal: 610, p: '18g', f: '32g', c: '65g' },
   ]
 };
 
-const SiteHeader = ({ cartCount, onCartClick, onScreenClick }: { cartCount: number, onCartClick: () => void, onScreenClick: (s: Screen) => void }) => {
+const SiteHeader = ({ cartCount, onCartClick, onScreenClick, cartIconRef }: { cartCount: number, onCartClick: () => void, onScreenClick: (s: Screen) => void, cartIconRef?: React.RefObject<HTMLDivElement> }) => {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md px-6 md:px-12 py-5 flex justify-between items-center border-b border-surface-dim/30">
       <div className="flex items-center gap-8">
@@ -321,6 +319,7 @@ const SiteHeader = ({ cartCount, onCartClick, onScreenClick }: { cartCount: numb
         </button>
         <button onClick={onCartClick} className="p-2 text-on-surface hover:text-primary transition-colors relative">
           <motion.div
+            ref={cartIconRef}
             key={cartCount}
             initial={{ scale: 1 }}
             animate={{ scale: [1, 1.2, 1] }}
@@ -471,13 +470,6 @@ const PlanMenuScreen = ({ planId, onBack }: { planId: string, onBack: () => void
                 <div key={meal.day} className={`p-10 rounded-[3rem] border border-surface-dim shadow-sm hover:shadow-xl transition-all duration-500 bg-white group`}>
                   <div className="flex flex-col md:flex-row justify-between mb-8 gap-10">
                     <div className="flex items-start gap-8">
-                      <div className="shrink-0 w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-surface-dim shadow-inner">
-                        {(meal as any).img ? (
-                          <img src={(meal as any).img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={meal.main} referrerPolicy="no-referrer" />
-                        ) : (
-                          <div className="w-full h-full flex items-center justify-center text-3xl">🍲</div>
-                        )}
-                      </div>
                       <div>
                         <span className="text-[10px] font-black text-primary tracking-[0.3em] mb-2 block">{meal.day.toUpperCase()}</span>
                         <h4 className="text-2xl font-black font-display text-on-surface uppercase group-hover:text-primary transition-colors">{meal.main}</h4>
@@ -562,7 +554,7 @@ const PlanMenuScreen = ({ planId, onBack }: { planId: string, onBack: () => void
   );
 };
 
-const RegionMenuScreen = ({ region, onBack, onAddToCart }: { region: string, onBack: () => void, onAddToCart: (item: any) => void }) => {
+const RegionMenuScreen = ({ region, onBack, onAddToCart }: { region: string, onBack: () => void, onAddToCart: (item: any, e: React.MouseEvent) => void }) => {
   const dishes = REGIONAL_DISHES_DATA[region] || [];
   
   return (
@@ -581,13 +573,6 @@ const RegionMenuScreen = ({ region, onBack, onAddToCart }: { region: string, onB
         {dishes.map((dish) => (
           <div key={dish.name} className="bg-white p-8 rounded-[2.5rem] border border-surface-dim shadow-sm group hover:shadow-xl transition-all duration-500 overflow-hidden">
             <div className="flex gap-8 items-start mb-6">
-              <div className="w-24 h-24 md:w-32 md:h-32 rounded-3xl overflow-hidden bg-surface-dim shrink-0 shadow-inner">
-                {(dish as any).img ? (
-                  <img src={(dish as any).img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={dish.name} referrerPolicy="no-referrer" />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-3xl">🍲</div>
-                )}
-              </div>
               <div className="flex-1">
                 <div className="flex justify-between items-start mb-2">
                   <h3 className="text-xl md:text-2xl font-black font-display text-on-surface leading-tight truncate">{dish.name}</h3>
@@ -596,33 +581,33 @@ const RegionMenuScreen = ({ region, onBack, onAddToCart }: { region: string, onB
               </div>
             </div>
             
-            <div className="grid grid-cols-4 gap-4 mb-8 bg-surface-dim/10 p-4 rounded-2xl border border-surface-dim/20">
-              <div className="text-center">
-                <div className="text-lg font-black font-display text-primary leading-none">{dish.kcal}</div>
-                <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">kcal</div>
+            <div className="flex items-center gap-2 mb-8 bg-surface-dim/5 p-3 rounded-2xl border border-surface-dim/10 overflow-x-auto no-scrollbar">
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl shadow-sm border border-surface-dim/20 shrink-0">
+                <Zap size={10} className="text-primary" />
+                <span className="text-[10px] font-black text-on-surface uppercase tracking-tight">{dish.kcal} kcal</span>
               </div>
-              <div className="text-center">
-                <div className="text-lg font-black font-display text-on-surface leading-none">{dish.p}</div>
-                <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">protein</div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl shadow-sm border border-surface-dim/20 shrink-0">
+                <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                <span className="text-[10px] font-black text-on-surface uppercase tracking-tight">{dish.p} PROTEIN</span>
               </div>
-              <div className="text-center">
-                <div className="text-lg font-black font-display text-on-surface leading-none">{dish.f}</div>
-                <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">fats</div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl shadow-sm border border-surface-dim/20 shrink-0">
+                <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <span className="text-[10px] font-black text-on-surface uppercase tracking-tight">{dish.f} FAT</span>
               </div>
-              <div className="text-center">
-                <div className="text-lg font-black font-display text-on-surface leading-none">{dish.c}</div>
-                <div className="text-[8px] font-black text-on-surface/30 uppercase mt-1">carbs</div>
+              <div className="flex items-center gap-1.5 px-3 py-1.5 bg-white rounded-xl shadow-sm border border-surface-dim/20 shrink-0">
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                <span className="text-[10px] font-black text-on-surface uppercase tracking-tight">{dish.c} CARB</span>
               </div>
             </div>
 
             <button 
-              onClick={() => onAddToCart({
+              onClick={(e) => onAddToCart({
                 id: `regional-${dish.name}`,
                 name: dish.name,
                 price: dish.price,
                 quantity: 1,
                 chefName: 'Regional Special'
-              })}
+              }, e)}
               className="w-full py-4 bg-primary text-white rounded-2xl font-black text-[10px] tracking-widest hover:opacity-90 active:scale-95 transition-all shadow-lg uppercase"
             >
               Add to Order
@@ -807,7 +792,6 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
                 <div className="w-40 h-40 rounded-full overflow-hidden border-8 border-white shadow-xl flex items-center justify-center">
                   <ChefAvatar 
                     gender={(chef as any).gender || 'female'} 
-                    img={chef.img}
                     size="w-full h-full" 
                     emojiScale="text-5xl"
                     className="group-hover:scale-105 transition-transform duration-500"
@@ -909,10 +893,10 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
   );
 };
 
-const ChefProfile = ({ chefId, onBack, onAddToCart }: { chefId: string, onBack: () => void, onAddToCart: (item: any) => void }) => {
+const ChefProfile = ({ chefId, onBack, onAddToCart }: { chefId: string, onBack: () => void, onAddToCart: (item: any, e: React.MouseEvent) => void }) => {
   const chef = CHEFS_DATA[chefId as keyof typeof CHEFS_DATA] || CHEFS_DATA['auntie-meera'];
 
-  const handleAddToCart = (dish: any) => {
+  const handleAddToCart = (dish: any, e: React.MouseEvent) => {
     const priceValue = parseInt(dish.price.replace('₹', ''));
     onAddToCart({
       id: `${chefId}-${dish.name}`,
@@ -920,128 +904,118 @@ const ChefProfile = ({ chefId, onBack, onAddToCart }: { chefId: string, onBack: 
       price: priceValue,
       quantity: 1,
       chefName: chef.name,
-      img: dish.img
-    });
+      img: ''
+    }, e);
   };
 
   return (
-    <div className="bg-[#FAF8F4] min-h-screen pt-12 pb-32">
-      {/* Search/Back Navigation */}
-      <div className="px-6 md:px-12 lg:px-24 mb-24">
+    <div className="bg-[#FAF9F6] min-h-screen selection:bg-primary/10">
+      {/* Navigation */}
+      <nav className="px-6 md:px-12 lg:px-24 py-12 flex justify-between items-center max-w-6xl mx-auto">
         <button 
           onClick={onBack} 
-          className="group flex items-center gap-2 text-[10px] font-black tracking-[0.3em] uppercase text-on-surface/40 hover:text-primary transition-all"
+          className="group flex items-center gap-4 text-[11px] font-black tracking-[0.4em] uppercase text-on-surface/40 hover:text-primary transition-colors"
         >
-          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
-          Back to Explore
+          <ArrowLeft size={16} /> 
+          Explore
         </button>
-      </div>
+        <div className="text-[10px] font-black tracking-[0.5em] uppercase text-primary/30">Chef Profile</div>
+      </nav>
 
-      <div className="px-6 md:px-12 lg:px-24 max-w-5xl">
-        {/* Chef Name Header */}
-        <header className="mb-32 flex flex-col md:flex-row items-center gap-12">
-          <div className="shrink-0">
-             <div className="w-32 h-32 md:w-48 md:h-48 rounded-full border-[12px] border-white shadow-2xl shadow-primary/5 flex items-center justify-center">
+      <main className="px-6 md:px-12 lg:px-24 max-w-4xl mx-auto pt-12 pb-40">
+        {/* Chef Headline */}
+        <header className="mb-32">
+          <div className="flex flex-col md:flex-row md:items-center gap-12">
+            <div className="shrink-0">
               <ChefAvatar 
                 gender={(chef as any).gender || 'female'} 
-                img={(chef as any).img}
-                size="w-full h-full" 
-                emojiScale="text-6xl md:text-7xl"
+                size="w-40 h-40 md:w-56 md:h-56" 
+                emojiScale="text-7xl md:text-8xl"
+                className="!bg-white border-none shadow-none"
               />
             </div>
-          </div>
-          <div>
-            <h1 className="text-7xl md:text-9xl font-display text-on-surface leading-none tracking-tight mb-8">
-              {chef.name}
-            </h1>
-            <div className="h-[1px] w-24 bg-primary/30" />
+            <div className="flex-1">
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-display italic text-on-surface leading-[0.9] tracking-tight whitespace-nowrap">
+                {chef.name}
+              </h1>
+            </div>
           </div>
         </header>
 
-        <div className="space-y-40">
-          {/* Heritage Story Section */}
-          <section className="max-w-3xl">
-            <div className="flex items-center gap-4 mb-10">
-              <span className="text-[10px] font-black text-primary tracking-[0.5em] uppercase">The Heritage Story</span>
-            </div>
-            
-            <div className="relative">
-              <p className="text-2xl md:text-3xl text-on-surface/80 leading-[1.6] font-display italic">
-                {chef.bio}
-              </p>
-            </div>
+        {/* Heritage Story */}
+        <section className="mb-40 max-w-3xl">
+          <h2 className="text-[11px] font-black text-primary tracking-[0.6em] uppercase mb-16 flex items-center gap-6">
+            The Heritage Story
+            <span className="flex-1 h-[0.5px] bg-primary/20" />
+          </h2>
+          <p className="text-2xl md:text-3xl lg:text-4xl text-on-surface/80 leading-[1.8] font-display italic serif tracking-wide">
+            {chef.bio}
+          </p>
+        </section>
 
-            <div className="mt-16 flex flex-wrap gap-x-12 gap-y-6">
-              {chef.specialties.map((spec) => (
-                <div key={spec} className="flex items-center gap-3">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
-                  <span className="text-[10px] font-black text-on-surface tracking-[0.2em] uppercase">{spec}</span>
-                </div>
-              ))}
-            </div>
-          </section>
+        {/* Menu Section */}
+        <section>
+          <div className="mb-24">
+            <h2 className="text-[11px] font-black text-primary tracking-[0.6em] uppercase mb-3">Today's Selection</h2>
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-display italic text-on-surface">On The Table Today</h3>
+          </div>
 
-          {/* On The Table Today Section */}
-          <section>
-            <div className="flex items-center justify-between mb-20">
-              <h2 className="text-[10px] font-black text-primary tracking-[0.5em] uppercase">On The Table Today</h2>
-              <span className="text-[10px] font-black text-on-surface/20 tracking-widest uppercase">Freshly prepared at home</span>
-            </div>
-            
-            <div className="space-y-0">
-              {chef.menu.map((dish: any, idx: number) => (
-                <div 
-                  key={dish.name} 
-                  className={`py-12 group ${idx === 0 ? 'border-t' : ''} border-b border-on-surface/10 hover:bg-white/50 transition-colors cursor-pointer px-4 -mx-4 rounded-xl`}
-                  onClick={() => handleAddToCart(dish)}
-                >
-                  <div className="flex items-center gap-8 md:gap-12">
-                    <div className="hidden sm:block shrink-0 w-32 h-32 md:w-40 md:h-40 rounded-3xl overflow-hidden bg-surface-dim">
-                      {dish.img ? (
-                        <img src={dish.img} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt={dish.name} referrerPolicy="no-referrer" />
-                      ) : (
-                        <div className="w-full h-full flex items-center justify-center text-4xl">🍲</div>
-                      )}
+          <div className="space-y-0 border-t border-on-surface/10">
+            {chef.menu.map((dish: any) => (
+              <div 
+                key={dish.name} 
+                className="group py-16 md:py-20 border-b border-on-surface/10 flex flex-col md:flex-row md:items-center justify-between gap-12 cursor-pointer hover:bg-white/40 transition-all px-4 -mx-4"
+                onClick={(e) => handleAddToCart(dish, e)}
+              >
+                <div className="max-w-xl">
+                  <h4 className="text-3xl md:text-4xl lg:text-5xl font-display italic text-on-surface group-hover:text-primary transition-colors mb-6">
+                    {dish.name}
+                  </h4>
+                  <p className="text-lg text-on-surface/50 font-medium leading-relaxed max-w-lg italic">
+                    {dish.meta}
+                  </p>
+                  
+                  {/* Prominent nutrition details */}
+                  <div className="flex flex-wrap gap-3 mt-10">
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-primary/5 rounded-lg border border-primary/10">
+                      <Zap size={10} className="text-primary" />
+                      <span className="text-[10px] font-black text-primary uppercase tracking-widest">{dish.kcal} KCAL</span>
                     </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
-                        <div className="max-w-2xl">
-                          <div className="flex items-center gap-4 mb-3">
-                            <h4 className="text-2xl md:text-3xl font-display text-on-surface group-hover:text-primary transition-colors truncate">
-                              {dish.name}
-                            </h4>
-                            {dish.tag && (
-                              <span className="text-[8px] font-black bg-primary/5 text-primary px-2 py-0.5 rounded tracking-tighter uppercase whitespace-nowrap">
-                                {dish.tag}
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm text-on-surface/50 font-medium normal-case leading-relaxed max-w-xl line-clamp-2">
-                            {dish.meta}
-                          </p>
-                        </div>
-                        <div className="flex flex-col items-end shrink-0">
-                          <span className="text-2xl font-display text-on-surface mb-4">{dish.price}</span>
-                          <button className="text-[9px] font-black text-primary tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
-                            <Plus size={12} /> Add to Order
-                          </button>
-                        </div>
-                      </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-dim/10 rounded-lg border border-surface-dim/20">
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-500" />
+                      <span className="text-[10px] font-black text-on-surface/70 uppercase tracking-widest">{dish.p} PROTEIN</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-dim/10 rounded-lg border border-surface-dim/20">
+                      <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                      <span className="text-[10px] font-black text-on-surface/70 uppercase tracking-widest">{dish.f} FAT</span>
+                    </div>
+                    <div className="flex items-center gap-1.5 px-3 py-1.5 bg-surface-dim/10 rounded-lg border border-surface-dim/20">
+                      <div className="w-1.5 h-1.5 rounded-full bg-green-500" />
+                      <span className="text-[10px] font-black text-on-surface/70 uppercase tracking-widest">{dish.c} CARB</span>
                     </div>
                   </div>
                 </div>
-              ))}
-            </div>
+                
+                <div className="flex items-center gap-12 self-end md:self-center">
+                  <span className="text-4xl font-display italic text-on-surface/60 group-hover:text-primary transition-colors">
+                    {dish.price}
+                  </span>
+                  <div className="w-14 h-14 rounded-full border border-primary/20 flex items-center justify-center text-primary bg-white shadow-xl shadow-primary/5 group-hover:scale-110 transition-transform">
+                    <Plus size={24} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
-            <div className="mt-32 p-12 border border-primary/10 rounded-[2rem] bg-white text-center max-w-2xl">
-              <p className="text-[10px] font-black text-on-surface/40 tracking-[0.2em] uppercase mb-8">Ready to savor home cooking?</p>
-              <button className="w-full py-8 bg-primary text-white rounded-2xl font-black text-xs tracking-[0.3em] uppercase shadow-2xl shadow-primary/10 hover:bg-black transition-all active:scale-95">
-                Reserve Your Meal
-              </button>
-            </div>
-          </section>
-        </div>
-      </div>
+        {/* Footer Note */}
+        <footer className="mt-40 pt-16 border-t border-on-surface/10 text-center opacity-30">
+          <p className="text-[11px] font-black text-on-surface tracking-[0.4em] uppercase">
+            Artisanal Home Dining Experience
+          </p>
+        </footer>
+      </main>
     </div>
   );
 };
@@ -1261,7 +1235,7 @@ const PhotoUpload = ({ value, onChange, gender }: { value: string, onChange: (v:
         className="relative group cursor-pointer"
       >
         <div className="w-40 h-40 rounded-full border-4 border-[#EEEAE1] shadow-2xl overflow-hidden bg-white flex items-center justify-center transition-all group-hover:border-primary/20">
-          <ChefAvatar gender={gender} img={value} size="w-full h-full" emojiScale="text-5xl" />
+          <ChefAvatar gender={gender} size="w-full h-full" emojiScale="text-5xl" />
           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all flex items-center justify-center">
             <Camera size={24} className="text-white opacity-0 group-hover:opacity-100 transition-all" />
           </div>
@@ -1303,8 +1277,7 @@ const BecomeAChef = ({ onBack }: { onBack: () => void }) => {
     days: [] as string[],
     hygiene: [] as string[],
     style: [] as string[],
-    deliveryRadius: '5km',
-    deliveryMode: 'Platform',
+    deliveryRadius: '2 KM',
     minOrder: '₹200',
     upiId: '',
     bankHolder: '',
@@ -1601,43 +1574,35 @@ const BecomeAChef = ({ onBack }: { onBack: () => void }) => {
               )}
 
               {step === 6 && (
-                <div className="space-y-10">
-                  <div className="flex items-center gap-4 text-primary">
-                    <Navigation size={24} />
-                    <h2 className="text-[10px] font-black tracking-[0.4em] uppercase">Delivery & Service Area</h2>
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div className="space-y-8">
-                       <div className="space-y-3">
-                          <label className="text-[10px] font-black text-on-surface/40 uppercase tracking-widest block">Delivery Radius</label>
-                          <div className="flex gap-3">
-                            {['2km', '5km', '8km', '10km+'].map(r => (
-                              <button 
-                                key={r}
-                                onClick={() => setFormData({...formData, deliveryRadius: r})}
-                                className={`flex-1 py-4 rounded-xl text-[9px] font-black uppercase transition-all ${formData.deliveryRadius === r ? 'bg-primary text-white shadow-md' : 'bg-[#FAF8F4] text-on-surface/40'}`}
-                              >
-                                {r}
-                              </button>
-                            ))}
-                          </div>
-                       </div>
-                       <InputField label="Minimum Order Value" value={formData.minOrder} onChange={(v) => setFormData({...formData, minOrder: v})} placeholder="₹200" />
+                <div className="space-y-16 max-w-2xl mx-auto py-8">
+                  <div className="flex flex-col items-center gap-6 text-center">
+                    <div className="w-20 h-20 rounded-full bg-primary/5 flex items-center justify-center text-primary border border-primary/10 shadow-inner">
+                      <Navigation size={32} />
                     </div>
-                    <div className="space-y-4">
-                       <label className="text-[10px] font-black text-on-surface/40 uppercase tracking-widest block mb-4">Preferred Delivery Mode</label>
-                       {['Platform Delivery', 'Self Delivery'].map(mode => (
-                         <button 
-                           key={mode}
-                           onClick={() => setFormData({...formData, deliveryMode: mode})}
-                           className={`w-full p-6 rounded-[2rem] text-left border transition-all flex items-center justify-between ${formData.deliveryMode === mode ? 'bg-white border-primary shadow-xl shadow-primary/5' : 'bg-[#FAF8F4] border-transparent'}`}
-                         >
-                           <span className="text-xs font-black tracking-widest uppercase">{mode}</span>
-                           <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all ${formData.deliveryMode === mode ? 'border-primary' : 'border-on-surface/10'}`}>
-                             {formData.deliveryMode === mode && <div className="w-3 h-3 bg-primary rounded-full" />}
-                           </div>
-                         </button>
-                       ))}
+                    <div className="space-y-2">
+                      <h2 className="text-[10px] font-black tracking-[0.4em] uppercase text-primary">Delivery & Service Area</h2>
+                      <p className="text-sm text-on-surface/40 font-medium normal-case">Define your operational range and order terms</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-16">
+                    <div className="space-y-6">
+                      <label className="text-[10px] font-black text-on-surface/40 uppercase tracking-widest block text-center">Delivery Radius</label>
+                      <div className="flex justify-center flex-wrap gap-4">
+                        {['2 KM', '4 KM', '6 KM'].map(r => (
+                          <button 
+                            key={r}
+                            onClick={() => setFormData({...formData, deliveryRadius: r})}
+                            className={`px-12 py-5 rounded-full text-[10px] font-black uppercase tracking-widest transition-all duration-500 border ${formData.deliveryRadius === r ? 'bg-primary text-white border-primary shadow-2xl shadow-primary/20 scale-105' : 'bg-transparent text-on-surface/30 border-on-surface/10 hover:border-primary/20'}`}
+                          >
+                            {r}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div className="max-w-md mx-auto w-full">
+                      <InputField label="Minimum Order Value" value={formData.minOrder} onChange={(v) => setFormData({...formData, minOrder: v})} placeholder="₹200" />
                     </div>
                   </div>
                 </div>
@@ -1656,7 +1621,13 @@ const BecomeAChef = ({ onBack }: { onBack: () => void }) => {
                     <InputField label="IFSC Code" value={formData.ifsc} onChange={(v) => setFormData({...formData, ifsc: v})} placeholder="SBIN0001234" />
                   </div>
                   <div className="pt-12">
-                    <button className="w-full py-8 bg-black text-white rounded-[2rem] font-black text-xs tracking-[0.4em] uppercase shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    <button 
+                      onClick={() => {
+                        alert('Application Submitted Successfully!');
+                        onBack();
+                      }}
+                      className="w-full py-8 bg-black text-white rounded-[2rem] font-black text-xs tracking-[0.4em] uppercase shadow-2xl hover:scale-[1.02] active:scale-[0.98] transition-all"
+                    >
                       Submit Chef Application
                     </button>
                     <p className="text-center text-[9px] font-bold text-on-surface/30 mt-6 normal-case italic">
@@ -1696,7 +1667,7 @@ const BecomeAChef = ({ onBack }: { onBack: () => void }) => {
                     <div className="flex flex-col items-center text-center">
                       <div className="relative mb-10">
                         <div className="w-48 h-48 rounded-full border-[12px] border-[#EEEAE1] shadow-2xl flex items-center justify-center bg-white">
-                           <ChefAvatar gender={formData.gender as 'male' | 'female'} img={formData.profilePhoto} size="w-full h-full" emojiScale="text-7xl" />
+                           <ChefAvatar gender={formData.gender as 'male' | 'female'} size="w-full h-full" emojiScale="text-7xl" />
                         </div>
                         <div className="absolute -bottom-2 -right-2 bg-primary text-white w-14 h-14 rounded-full flex items-center justify-center border-[4px] border-white shadow-xl">
                           <Star size={20} fill="currentColor" />
@@ -1901,10 +1872,10 @@ const ReviewSection = ({ subjectId }: { subjectId: string }) => {
   );
 };
 
-const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, onChefClick: (id: string) => void, onAddToCart: (item: any) => void }) => {
+const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, onChefClick: (id: string) => void, onAddToCart: (item: any, e: React.MouseEvent) => void }) => {
   const [amount, setAmount] = useState(1);
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (e: React.MouseEvent) => {
     onAddToCart({
       id: `auntie-meera-Homemade Paneer Butter Masala`,
       name: 'Homemade Paneer Butter Masala',
@@ -1912,7 +1883,7 @@ const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, 
       quantity: amount,
       chefName: 'Chef Anita S.',
       img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800'
-    });
+    }, e);
   };
 
   return (
@@ -1997,7 +1968,6 @@ const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, 
               <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-primary/10 shadow-lg flex items-center justify-center">
                 <ChefAvatar 
                   gender="female" 
-                  img={CHEFS_DATA['auntie-meera'].img}
                   size="w-full h-full" 
                   emojiScale="text-3xl"
                 />
@@ -2328,8 +2298,19 @@ export default function App() {
   const [history, setHistory] = useState<Screen[]>(['home']);
 
   const [cart, setCart] = useState<CartItem[]>([]);
+  const cartIconRef = useRef<HTMLDivElement>(null);
+  const [flyingItems, setFlyingItems] = useState<{ id: number, start: { x: number, y: number } }[]>([]);
 
-  const addToCart = (item: CartItem) => {
+  const addToCart = (item: CartItem, e?: React.MouseEvent) => {
+    if (e) {
+      const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
+      const newItem = { id: Date.now(), start: { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 } };
+      setFlyingItems(prev => [...prev, newItem]);
+      setTimeout(() => {
+        setFlyingItems(prev => prev.filter(f => f.id !== newItem.id));
+      }, 800);
+    }
+
     setCart(prev => {
       const existing = prev.find(x => x.id === item.id);
       if (existing) {
@@ -2364,13 +2345,52 @@ export default function App() {
     }
   };
 
-  const cartTotal = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
   const cartCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
+  // Calculate target for flying animation
+  const getCartTarget = () => {
+    if (cartIconRef.current) {
+      const rect = cartIconRef.current.getBoundingClientRect();
+      return { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
+    }
+    return { x: 0, y: 0 };
+  };
+
   return (
-    <div className="min-h-screen font-sans bg-surface selection:bg-primary-container selection:text-on-primary-container">
-      <SiteHeader cartCount={cartCount} onCartClick={() => navigateTo('checkout')} onScreenClick={navigateTo} />
+    <div className="min-h-screen font-sans bg-surface selection:bg-primary-container selection:text-on-primary-container relative overflow-x-hidden">
+      <SiteHeader cartCount={cartCount} onCartClick={() => navigateTo('checkout')} onScreenClick={navigateTo} cartIconRef={cartIconRef} />
       
+      {/* Flying Items Animation Overlay */}
+      <div className="fixed inset-0 pointer-events-none z-[100]">
+        <AnimatePresence>
+          {flyingItems.map((item) => {
+            const target = getCartTarget();
+            return (
+              <motion.div
+                key={item.id}
+                initial={{ 
+                  x: item.start.x, 
+                  y: item.start.y, 
+                  scale: 1, 
+                  opacity: 1 
+                }}
+                animate={{ 
+                  x: target.x, 
+                  y: target.y, 
+                  scale: 0.2, 
+                  opacity: 0.5 
+                }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed w-8 h-8 -ml-4 -mt-4 bg-primary rounded-full shadow-lg flex items-center justify-center text-white"
+              >
+                <Plus size={16} />
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
+      </div>
+
       <AnimatePresence mode="wait">
         <motion.div
           key={screen}
