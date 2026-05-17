@@ -877,7 +877,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
   );
 };
 
-const ChefProfile = ({ chefId, onBack, onDishClick, onAddToCart }: { chefId: string, onBack: () => void, onDishClick: () => void, onAddToCart: (item: any) => void }) => {
+const ChefProfile = ({ chefId, onBack, onAddToCart }: { chefId: string, onBack: () => void, onAddToCart: (item: any) => void }) => {
   const chef = CHEFS_DATA[chefId as keyof typeof CHEFS_DATA] || CHEFS_DATA['auntie-meera'];
 
   const handleAddToCart = (dish: any) => {
@@ -893,289 +893,99 @@ const ChefProfile = ({ chefId, onBack, onDishClick, onAddToCart }: { chefId: str
   };
 
   return (
-    <div className="pb-32 bg-white min-h-screen uppercase">
-      {/* Immersive Header */}
-      <div className="relative h-[60vh] min-h-[500px] overflow-hidden">
-        <img 
-          src={chef.headerImg} 
-          className="w-full h-full object-cover" 
-          alt="Chef Heritage" 
-          referrerPolicy="no-referrer"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-white" />
-        
-        {/* Navigation Over Header */}
-        <div className="absolute top-0 left-0 right-0 px-6 md:px-12 py-8 flex justify-between items-center z-20">
-          <button 
-            onClick={onBack} 
-            className="flex items-center gap-3 px-6 py-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white text-xs font-black tracking-widest hover:bg-white/20 transition-all uppercase"
-          >
-            <ArrowLeft size={16} /> Back to Explore
-          </button>
-          <div className="flex gap-4">
-            <button className="p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all">
-              <Share2 size={20} />
-            </button>
-            <button className="p-3 bg-white/10 backdrop-blur-xl border border-white/20 rounded-full text-white hover:bg-white/20 transition-all">
-              <Heart size={20} />
-            </button>
-          </div>
-        </div>
-
-        {/* Profile Identity Card (Floating Overlap) */}
-        <div className="absolute -bottom-20 left-6 md:left-12 lg:left-24 right-6 md:right-auto z-10">
-          <div className="bg-white p-8 md:p-12 rounded-[3.5rem] shadow-2xl border border-surface-dim flex flex-col md:flex-row items-center md:items-end gap-10 max-w-4xl">
-            <div className="relative shrink-0">
-              <div className="w-48 h-48 rounded-[3rem] overflow-hidden ring-12 ring-white shadow-2xl bg-surface-dim/20">
-                <img src={chef.img} className="w-full h-full object-cover" alt={chef.name} referrerPolicy="no-referrer" />
-              </div>
-              <div className="absolute -bottom-4 -right-4 bg-primary text-white w-14 h-14 rounded-3xl flex flex-col items-center justify-center shadow-2xl border-4 border-white">
-                <span className="text-sm font-black leading-none">{chef.rating}</span>
-                <Star size={10} fill="currentColor" />
-              </div>
-            </div>
-            
-            <div className="text-center md:text-left flex-1 min-w-0">
-              <div className="flex flex-col md:flex-row items-center gap-4 mb-4">
-                <h2 className="text-4xl md:text-6xl font-black font-display tracking-tighter text-on-surface leading-none truncate max-w-full">
-                  {chef.name}
-                </h2>
-                <span className="flex items-center gap-2 bg-secondary/10 text-secondary text-[8px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest border border-secondary/20">
-                  <Verified size={12} fill="currentColor" /> Certified Home Chef
-                </span>
-              </div>
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-6 text-[10px] font-black text-on-surface/40 tracking-[0.15em]">
-                <div className="flex items-center gap-2 uppercase">
-                  <Utensils size={14} className="text-primary" />
-                  {chef.specialties[0]}
-                </div>
-                <div className="flex items-center gap-2 uppercase">
-                  <MessageSquare size={14} className="text-primary" />
-                  {chef.reviews} Guest Stories
-                </div>
-                <div className="flex items-center gap-2 uppercase">
-                  <MapPin size={14} className="text-primary" />
-                  Hyperlocal delivery
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="bg-[#FAF8F4] min-h-screen pt-12 pb-32">
+      {/* Search/Back Navigation */}
+      <div className="px-6 md:px-12 lg:px-24 mb-24">
+        <button 
+          onClick={onBack} 
+          className="group flex items-center gap-2 text-[10px] font-black tracking-[0.3em] uppercase text-on-surface/40 hover:text-primary transition-all"
+        >
+          <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> 
+          Back to Explore
+        </button>
       </div>
 
-      <div className="px-6 md:px-12 lg:px-24 pt-48 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-20 max-w-7xl mx-auto">
-        <div className="lg:col-span-8 space-y-24">
-          {/* Chef's Story */}
-          <section className="relative">
-            <div className="max-w-3xl">
-              <header className="mb-12">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="h-[2px] w-12 bg-primary/30" />
-                  <span className="text-[10px] font-black text-primary tracking-[0.4em] uppercase">The Culinary Philosophy</span>
-                </div>
-                <h3 className="text-5xl md:text-6xl font-black font-display text-on-surface leading-[0.9] tracking-tight uppercase mb-8">
-                  Nourishing both <br /> <span className="text-primary italic">Soul & Body.</span>
-                </h3>
-              </header>
-              
-              <div className="relative">
-                <span className="absolute -top-10 -left-6 text-9xl font-serif text-primary/5 select-none">“</span>
-                <p className="text-xl md:text-2xl text-on-surface/70 leading-relaxed font-medium normal-case italic pl-2 border-l-0">
-                  {chef.bio}
-                </p>
-              </div>
+      <div className="px-6 md:px-12 lg:px-24 max-w-5xl">
+        {/* Chef Name Header */}
+        <header className="mb-32">
+          <h1 className="text-7xl md:text-9xl font-display text-on-surface leading-none tracking-tight mb-8">
+            {chef.name}
+          </h1>
+          <div className="h-[1px] w-24 bg-primary/30" />
+        </header>
 
-              <div className="mt-16 bg-surface-dim/10 p-10 rounded-[3rem] border border-surface-dim/40">
-                <h4 className="text-[10px] font-black text-on-surface uppercase tracking-widest mb-8 flex items-center gap-3">
-                  <Star size={14} className="text-primary" /> Signature Specialties
-                </h4>
-                <div className="flex flex-wrap gap-4">
-                  {chef.specialties.map((spec) => (
-                    <div key={spec} className="px-8 py-4 bg-white rounded-2xl text-[10px] font-black text-primary tracking-[0.2em] border border-primary/10 shadow-sm flex items-center gap-3 hover:bg-primary hover:text-white transition-all cursor-default group">
-                      <ChefHat size={16} className="group-hover:scale-110 transition-transform" /> {spec.toUpperCase()}
-                    </div>
-                  ))}
-                </div>
-              </div>
+        <div className="space-y-40">
+          {/* Heritage Story Section */}
+          <section className="max-w-3xl">
+            <div className="flex items-center gap-4 mb-10">
+              <span className="text-[10px] font-black text-primary tracking-[0.5em] uppercase">The Heritage Story</span>
             </div>
-          </section>
-
-          {/* Today's Menu Redesign */}
-          <section>
-            <header className="flex flex-col md:flex-row justify-between items-end gap-8 mb-16 border-b border-surface-dim pb-10">
-              <div>
-                <span className="text-[10px] font-black text-secondary tracking-[0.3em] uppercase mb-4 block">Daily Selection</span>
-                <h2 className="text-4xl md:text-5xl font-black font-display text-primary leading-none uppercase tracking-tighter">On The Table Today</h2>
-              </div>
-              <div className="flex items-center gap-4 text-[10px] font-black text-on-surface/30 tracking-widest uppercase">
-                <Soup size={18} />
-                Freshly prepared at home
-              </div>
-            </header>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
-              {chef.menu.map((dish: any) => (
-                <div 
-                  key={dish.name} 
-                  className="group relative flex flex-col gap-8"
-                >
-                  <div className={`relative ${dish.img ? 'aspect-[4/5]' : 'aspect-video'} rounded-[3.5rem] overflow-hidden shadow-2xl ${!dish.img ? 'bg-primary/5 flex items-center justify-center border-2 border-dashed border-primary/20' : ''}`}>
-                    {dish.img ? (
-                      <>
-                        <img 
-                          src={dish.img} 
-                          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000 grayscale-[0.2] group-hover:grayscale-0" 
-                          alt={dish.name} 
-                          referrerPolicy="no-referrer" 
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
-                      </>
-                    ) : (
-                      <div className="text-center p-10">
-                        <UtensilsCrossed size={48} className="text-primary/20 mx-auto mb-4" />
-                        <span className="text-[10px] font-black text-primary/40 uppercase tracking-widest">Ghar ka swaad</span>
-                      </div>
-                    )}
-                    
-                    <div className="absolute top-8 left-8 flex flex-col gap-2">
-                      <span className={`${dish.img ? 'bg-white/10 backdrop-blur-md border border-white/20 text-white' : 'bg-primary text-white'} text-[8px] font-black px-4 py-1.5 rounded-full tracking-widest uppercase shadow-xl self-start`}>
-                        {dish.tag}
-                      </span>
-                    </div>
+            <div className="relative">
+              <p className="text-2xl md:text-3xl text-on-surface/80 leading-[1.6] font-display italic">
+                {chef.bio}
+              </p>
+            </div>
 
-                    {dish.img && (
-                      <div className="absolute bottom-8 left-8 right-8">
-                        <div className="flex justify-between items-end">
-                          <div className="max-w-[70%]">
-                            <h4 className="text-2xl font-black font-display text-white leading-tight uppercase group-hover:text-primary transition-colors">{dish.name}</h4>
-                            <p className="text-[10px] text-white/50 font-bold normal-case mt-2 leading-relaxed">{dish.meta}</p>
-                          </div>
-                          <div className="text-right">
-                            <span className="text-3xl font-black text-white tracking-tighter">{dish.price}</span>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                  
-                  {!dish.img && (
-                    <div className="px-2">
-                       <div className="flex justify-between items-start mb-4">
-                        <h4 className="text-2xl font-black font-display text-on-surface leading-tight uppercase group-hover:text-primary transition-colors">{dish.name}</h4>
-                        <span className="text-3xl font-black text-primary tracking-tighter">{dish.price}</span>
-                      </div>
-                      <p className="text-xs text-on-surface/40 font-bold normal-case leading-relaxed">{dish.meta}</p>
-                    </div>
-                  )}
-                  
-                  {/* Nutritional Micro-stats */}
-                  <div className="px-6 grid grid-cols-4 gap-4 pb-4 border-b border-surface-dim">
-                    <div className="text-center">
-                      <div className="text-sm font-black font-display text-primary">{dish.kcal || 450}</div>
-                      <div className="text-[7px] font-black text-on-surface/30 uppercase mt-1">kcal</div>
-                    </div>
-                    <div className="text-center border-l border-surface-dim">
-                      <div className="text-sm font-black font-display text-on-surface">{dish.p || '12g'}</div>
-                      <div className="text-[7px] font-black text-on-surface/30 uppercase mt-1">protein</div>
-                    </div>
-                    <div className="text-center border-l border-surface-dim">
-                      <div className="text-sm font-black font-display text-on-surface">{dish.f || '18g'}</div>
-                      <div className="text-[7px] font-black text-on-surface/30 uppercase mt-1">fats</div>
-                    </div>
-                    <div className="text-center border-l border-surface-dim">
-                      <div className="text-sm font-black font-display text-on-surface">{dish.c || '55g'}</div>
-                      <div className="text-[7px] font-black text-on-surface/30 uppercase mt-1">carbs</div>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-4">
-                    <button 
-                      onClick={() => handleAddToCart(dish)}
-                      className="flex-1 py-5 bg-primary text-white rounded-2xl font-black text-[10px] tracking-widest hover:bg-black transition-all shadow-xl active:scale-95 uppercase flex items-center justify-center gap-3"
-                    >
-                      <ShoppingBag size={14} /> Add to Order
-                    </button>
-                    <button className="px-6 py-5 border-2 border-primary/20 text-primary rounded-2xl font-black text-[10px] tracking-widest hover:bg-primary/5 transition-all uppercase">
-                       Custom
-                    </button>
-                  </div>
+            <div className="mt-16 flex flex-wrap gap-x-12 gap-y-6">
+              {chef.specialties.map((spec) => (
+                <div key={spec} className="flex items-center gap-3">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40" />
+                  <span className="text-[10px] font-black text-on-surface tracking-[0.2em] uppercase">{spec}</span>
                 </div>
               ))}
             </div>
           </section>
 
-          <ReviewSection subjectId={chef.id} />
-        </div>
-
-        <aside className="lg:col-span-4 space-y-12">
-          {/* Chef stats & verified info */}
-          <div className="bg-[#EEEAE1] p-10 rounded-[3.5rem] border border-surface-dim space-y-12 sticky top-32 lg:mt-0 shadow-2xl shadow-primary/5">
-             <div>
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-[1px] flex-1 bg-primary/20" />
-                <span className="text-[10px] font-black text-primary tracking-[0.3em] uppercase italic shrink-0">Culinary Trust</span>
-                <div className="h-[1px] flex-1 bg-primary/20" />
-              </div>
-              
-              <div className="space-y-10">
-                <div className="flex items-center gap-6 group">
-                   <div className="w-16 h-16 bg-white rounded-[1.5rem] flex items-center justify-center shrink-0 border border-surface-dim shadow-sm group-hover:bg-secondary transition-colors duration-500">
-                      <Verified className="text-secondary group-hover:text-white transition-colors duration-500" size={28} />
-                   </div>
-                   <div>
-                      <h5 className="text-[11px] font-black text-on-surface uppercase tracking-widest mb-1 shadow-primary/10">Hygiene Certified</h5>
-                      <p className="text-[10px] font-bold text-on-surface/40 leading-relaxed normal-case italic">Weekly spot-checks and artisanal sanitation standards.</p>
-                   </div>
-                </div>
-                
-                <div className="flex items-center gap-6 group">
-                   <div className="w-16 h-16 bg-white rounded-[1.5rem] flex items-center justify-center shrink-0 border border-surface-dim shadow-sm group-hover:bg-primary transition-colors duration-500">
-                      <Clock className="text-primary group-hover:text-white transition-colors duration-500" size={28} />
-                   </div>
-                   <div>
-                      <h5 className="text-[11px] font-black text-on-surface uppercase tracking-widest mb-1">Slow Food Philosophy</h5>
-                      <p className="text-[10px] font-bold text-on-surface/40 leading-relaxed normal-case italic">Traditional methods & long prep times for deep, authentic flavors.</p>
-                   </div>
-                </div>
-
-                <div className="flex items-center gap-6 group">
-                   <div className="w-16 h-16 bg-white rounded-[1.5rem] flex items-center justify-center shrink-0 border border-surface-dim shadow-sm group-hover:bg-on-surface transition-colors duration-500">
-                      <ShieldCheck className="text-on-surface group-hover:text-white transition-colors duration-500" size={28} />
-                   </div>
-                   <div>
-                      <h5 className="text-[11px] font-black text-on-surface uppercase tracking-widest mb-1">100% Homemade</h5>
-                      <p className="text-[10px] font-bold text-on-surface/40 leading-relaxed normal-case italic">Every ingredient sourced fresh and prepared from scratch.</p>
-                   </div>
-                </div>
-              </div>
+          {/* On The Table Today Section */}
+          <section>
+            <div className="flex items-center justify-between mb-20">
+              <h2 className="text-[10px] font-black text-primary tracking-[0.5em] uppercase">On The Table Today</h2>
+              <span className="text-[10px] font-black text-on-surface/20 tracking-widest uppercase">Freshly prepared at home</span>
             </div>
-
-            <div className="pt-8 border-t border-surface-dim/40">
-              <h3 className="text-2xl font-black font-display text-primary mb-10 tracking-tight uppercase flex items-center gap-4">
-                The Workspace <div className="h-6 w-[1px] bg-primary/20 rotate-12" />
-              </h3>
-              <div className="grid grid-cols-2 gap-4">
-                {chef.kitchenPhotos.map((img: string, idx: number) => (
-                  <div key={idx} className="aspect-square rounded-3xl overflow-hidden shadow-inner border-4 border-white group cursor-zoom-in">
-                    <img 
-                      src={img} 
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700" 
-                      alt={`Kitchen ${idx}`} 
-                      referrerPolicy="no-referrer" 
-                    />
+            
+            <div className="space-y-0">
+              {chef.menu.map((dish: any, idx: number) => (
+                <div 
+                  key={dish.name} 
+                  className={`py-12 group ${idx === 0 ? 'border-t' : ''} border-b border-on-surface/10 hover:bg-white/50 transition-colors cursor-pointer px-4 -mx-4 rounded-xl`}
+                  onClick={() => handleAddToCart(dish)}
+                >
+                  <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                    <div className="max-w-2xl">
+                      <div className="flex items-center gap-4 mb-3">
+                        <h4 className="text-2xl md:text-3xl font-display text-on-surface group-hover:text-primary transition-colors">
+                          {dish.name}
+                        </h4>
+                        {dish.tag && (
+                          <span className="text-[8px] font-black bg-primary/5 text-primary px-2 py-0.5 rounded tracking-tighter uppercase">
+                            {dish.tag}
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-on-surface/50 font-medium normal-case leading-relaxed max-w-xl">
+                        {dish.meta}
+                      </p>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="text-2xl font-display text-on-surface mb-4">{dish.price}</span>
+                      <button className="text-[9px] font-black text-primary tracking-widest uppercase opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-2">
+                        <Plus size={12} /> Add to Order
+                      </button>
+                    </div>
                   </div>
-                ))}
-              </div>
-              <p className="text-[10px] font-black text-on-surface/30 tracking-widest text-center uppercase mt-12 mb-2 italic">
-                {chef.name}'s Creative Kitchen
-              </p>
+                </div>
+              ))}
             </div>
 
-            <button className="w-full py-8 bg-white text-primary rounded-[2rem] font-black text-[11px] tracking-[0.2em] uppercase shadow-2xl shadow-primary/10 hover:bg-primary hover:text-white transition-all active:scale-95 border-2 border-primary/10">
-              Request Daily Subscription
-            </button>
-          </div>
-        </aside>
+            <div className="mt-32 p-12 border border-primary/10 rounded-[2rem] bg-white text-center max-w-2xl">
+              <p className="text-[10px] font-black text-on-surface/40 tracking-[0.2em] uppercase mb-8">Ready to savor home cooking?</p>
+              <button className="w-full py-8 bg-primary text-white rounded-2xl font-black text-xs tracking-[0.3em] uppercase shadow-2xl shadow-primary/10 hover:bg-black transition-all active:scale-95">
+                Reserve Your Meal
+              </button>
+            </div>
+          </section>
+        </div>
       </div>
     </div>
   );
@@ -1977,7 +1787,7 @@ export default function App() {
               onRegionClick={(r) => navigateTo('region-menu', r)}
             />
           )}
-          {screen === 'chef-profile' && <ChefProfile chefId={selectedChefId} onBack={goBack} onDishClick={() => navigateTo('item-detail')} onAddToCart={addToCart} />}
+          {screen === 'chef-profile' && <ChefProfile chefId={selectedChefId} onBack={goBack} onAddToCart={addToCart} />}
           {screen === 'item-detail' && <ItemDetail onBack={goBack} onChefClick={(id) => navigateTo('chef-profile', id)} onAddToCart={addToCart} />}
           {screen === 'plan-listing' && <PlanListingScreen onPlanClick={(id) => navigateTo('plan-menu', id)} />}
           {screen === 'plan-menu' && <PlanMenuScreen planId={selectedPlan} onBack={goBack} />}
