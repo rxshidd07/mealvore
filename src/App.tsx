@@ -497,19 +497,6 @@ const PlanMenuScreen = ({ planId, onBack }: { planId: string, onBack: () => void
               ))}
             </div>
           </section>
-
-          <section className="bg-secondary/5 p-12 rounded-[3.5rem] border border-secondary/10 relative overflow-hidden">
-            <div className="relative z-10">
-              <h4 className="text-2xl font-black font-display text-secondary mb-6 flex items-center gap-4 uppercase tracking-tight">
-                <ShieldCheck size={32} />
-                Artisanal Guarantee
-              </h4>
-              <p className="text-sm text-on-surface/70 leading-relaxed font-bold normal-case">
-                These plans are rotating menus curated by senior nutritionists and prepared by our top-rated home chefs. We use cold-pressed mustard oil, A2 cow ghee, and organically sourced grains. No refined flour (Maida) or white sugar is used in any of these preparations.
-              </p>
-            </div>
-            <ChefHat size={160} className="absolute -bottom-10 -right-10 text-secondary opacity-[0.05] rotate-12" />
-          </section>
         </div>
 
         <aside className="lg:col-span-4">
