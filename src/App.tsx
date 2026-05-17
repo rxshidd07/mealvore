@@ -81,7 +81,7 @@ const CHEFS_DATA = {
     bio: 'Chef Anita S. is a passionate Bengali home chef known for rich, comforting flavors and slow-cooked traditional meals inspired by Kolkata-style cooking. Having learned recipes from generations of family cooking, she specializes in aromatic Dum Biryani and authentic homemade dishes that bring the warmth of Bengali hospitality to every plate.',
     rating: 4.9,
     reviews: '120+',
-    img: 'https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=400',
+    img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400',
     headerImg: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?auto=format&fit=crop&q=80&w=1200',
     specialties: ['Bengali Cuisine', 'Kolkata Dum Biryani', 'Traditional Sweets'],
     kitchenPhotos: [
@@ -102,7 +102,7 @@ const CHEFS_DATA = {
     bio: 'Chef Rahul M. is a health-focused home chef who believes everyday food should be nourishing, balanced, and comforting without losing traditional flavors. Inspired by wholesome Indian home cooking, he creates low-oil thalis packed with seasonal vegetables, fresh ingredients, and simple spices that feel light yet satisfying. His meals are designed for people who want clean, homestyle food every day.',
     rating: 4.8,
     reviews: '85+',
-    img: 'https://images.unsplash.com/photo-1583394821910-2811af85122e?auto=format&fit=crop&q=80&w=400',
+    img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400',
     headerImg: 'https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&q=80&w=1000',
     specialties: ['Health-focused', 'Healthy Thalis', 'Low-oil Indian'],
     kitchenPhotos: [
@@ -738,7 +738,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               rating: 4.9, 
               bio: 'Cooking is how I share my heritage. My Biryani recipe has been in the family for three generations.',
               tags: ['Spicy', 'Traditional'],
-              img: 'https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=400'
+              img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=400'
             },
             { 
               id: 'chef-rahul-m',
@@ -747,7 +747,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               rating: 4.8, 
               bio: 'I believe home food should be balanced. My thalis are low-oil and packed with seasonal veggies.',
               tags: ['Healthy', 'Vegetarian'],
-              img: 'https://images.unsplash.com/photo-1583394821910-2811af85122e?auto=format&fit=crop&q=80&w=400'
+              img: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=400'
             },
             { 
               id: 'chef-priya-k',
