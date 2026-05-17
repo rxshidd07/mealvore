@@ -15,6 +15,15 @@ View your app in AI Studio: https://ai.studio/apps/8444487c-c0bc-4a84-9dd9-97d8a
 
 1. Install dependencies:
    `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
+2. Run the app:
    `npm run dev`
+
+## Deploy with GitHub Pages
+
+1. Push this repo to GitHub.
+2. In GitHub, open **Settings → Pages → Build and deployment** and set **Source** to **GitHub Actions**.
+3. Push to the `main` branch.
+4. The workflow at `/home/runner/work/mealvore/mealvore/.github/workflows/deploy.yml` will build and deploy automatically.
+
+Because this app is deployed as static files on GitHub Pages, do not expose private API keys in frontend code.
+If you add Gemini-powered features, call Gemini from a backend/API proxy and keep the key server-side only.
