@@ -75,11 +75,11 @@ interface CartItem {
 const CHEFS_DATA = {
   'auntie-meera': {
     id: 'auntie-meera',
-    name: 'Auntie Meera',
+    name: 'Chef Anita S.',
     bio: 'Cooking with love for 20 years. Specializes in authentic Maharashtrian cuisine, bringing the traditional flavors of Puneri and Malvani households straight to your table. Every dish is prepared with hand-ground spices and a dash of tradition.',
     rating: 4.9,
     reviews: '120+',
-    img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300',
+    img: 'https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=400',
     headerImg: 'https://images.unsplash.com/photo-1556910116-e220f712735d?auto=format&fit=crop&q=80&w=1000',
     specialties: ['Maharashtrian', 'Thali Special', 'Traditional Sweets'],
     kitchenPhotos: [
@@ -206,7 +206,7 @@ const PLANS_DATA = {
     desc: 'Chef-crafted experimental meals. Global techniques meet local ingredients for an unparalleled home dining experience.',
     price: '₹180',
     unit: 'per meal',
-    img: 'https://images.unsplash.com/photo-1547928501-a20245053cfd?auto=format&fit=crop&q=80&w=800',
+    img: 'https://images.unsplash.com/photo-1514326640560-7d063ef2aed5?auto=format&fit=crop&q=80&w=800',
     accent: 'bg-primary/5',
     tagColor: 'bg-primary',
     meals: [
@@ -607,7 +607,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
       {/* Hero Section */}
       <section className="relative h-[85vh] min-h-[600px] w-full overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=2000" 
+          src="https://images.unsplash.com/photo-1596797038530-2c39bb05057a?auto=format&fit=crop&q=80&w=2000" 
           className="w-full h-full object-cover" 
           alt="Traditional Indian Meal" 
           referrerPolicy="no-referrer"
@@ -624,7 +624,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               Ghar ka khana, <br className="hidden md:block" /> just around the corner.
             </h1>
             <p className="text-lg md:text-xl text-white/90 font-medium max-w-xl mb-12 leading-relaxed">
-              Authentic recipes from your neighbor's kitchen, delivered with the hygiene standards of a five-star hotel.
+              Authentic home-cooked meals from nearby kitchens, fresh and hygienically prepared
             </p>
             
             <div className="flex flex-col md:flex-row gap-0 bg-white rounded-2xl md:rounded-full p-2 w-full max-w-2xl shadow-2xl relative">
@@ -705,9 +705,9 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
           {[
             { name: 'North Indian', img: 'https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?auto=format&fit=crop&q=80&w=600' },
-            { name: 'South Indian', img: 'https://images.unsplash.com/photo-1541014741259-df549fa9ba6f?auto=format&fit=crop&q=80&w=600' },
-            { name: 'East Indian', img: 'https://images.unsplash.com/photo-1610450937667-03ba2925b390?auto=format&fit=crop&q=80&w=600' },
-            { name: 'Artisanal', img: 'https://images.unsplash.com/photo-1601050690597-df056fb1779f?auto=format&fit=crop&q=80&w=600' }
+            { name: 'South Indian', img: 'https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&q=80&w=800' },
+            { name: 'East Indian', img: 'https://images.unsplash.com/photo-1606491956689-2ea866880c84?auto=format&fit=crop&q=80&w=800' },
+            { name: 'Artisanal', img: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800' }
           ].map((reg) => (
             <div 
               key={reg.name} 
@@ -740,7 +740,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               rating: 4.9, 
               bio: 'Cooking is how I share my heritage. My Biryani recipe has been in the family for three generations.',
               tags: ['Spicy', 'Traditional'],
-              img: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=300'
+              img: 'https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=400'
             },
             { 
               name: 'Chef Rahul M.', 
@@ -748,7 +748,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               rating: 4.8, 
               bio: 'I believe home food should be balanced. My thalis are low-oil and packed with seasonal veggies.',
               tags: ['Healthy', 'Vegetarian'],
-              img: 'https://images.unsplash.com/photo-1583394838336-acd97773cfbf?auto=format&fit=crop&q=80&w=300'
+              img: 'https://images.unsplash.com/photo-1583394821910-2811af85122e?auto=format&fit=crop&q=80&w=400'
             },
             { 
               name: 'Chef Priya K.', 
@@ -756,7 +756,7 @@ const HomeScreen = ({ onChefClick, onPlanClick, onRegionClick }: { onChefClick: 
               rating: 5.0, 
               bio: 'Baking is a science and an art. I use organic grains to create the perfect sourdough and pastries.',
               tags: ['Organic', 'Handmade'],
-              img: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=300'
+              img: 'https://images.unsplash.com/photo-1622396481328-9b1b78cdd9fd?auto=format&fit=crop&q=80&w=400'
             }
           ].map((chef) => (
             <div 
@@ -1321,7 +1321,7 @@ const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, 
       name: 'Homemade Paneer Butter Masala',
       price: 280,
       quantity: amount,
-      chefName: 'Auntie Meera',
+      chefName: 'Chef Anita S.',
       img: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&q=80&w=800'
     });
   };
@@ -1406,10 +1406,10 @@ const ItemDetail = ({ onBack, onChefClick, onAddToCart }: { onBack: () => void, 
           <div className="bg-white p-10 rounded-[3rem] border border-surface-dim shadow-xl text-center md:text-left">
             <div className="flex flex-col md:flex-row items-center gap-6 mb-10">
               <div className="w-20 h-20 rounded-full overflow-hidden ring-4 ring-primary/10 shadow-lg bg-[#EEEAE1]">
-                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=200" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+                <img src="https://images.unsplash.com/photo-1595273670150-db0a3bf69d7e?auto=format&fit=crop&q=80&w=200" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
               </div>
               <div>
-                <h4 className="text-xl font-black font-display text-on-surface leading-none mb-2">Auntie Meera</h4>
+                <h4 className="text-xl font-black font-display text-on-surface leading-none mb-2">Chef Anita S.</h4>
                 <p className="text-[10px] font-black text-primary/60 tracking-widest uppercase">Expert Home Cook • 4.9 (2k+)</p>
               </div>
             </div>
